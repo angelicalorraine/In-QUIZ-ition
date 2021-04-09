@@ -1,22 +1,80 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --hue-neutral: 200;
+  --hue-wrong: red;
+  --hue-correct: rgb(8, 192, 8);
+}
 body {
   text-align: center;
   font-size: 25px;
   font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .quizbox {
-  display: block;
-  margin: 80px auto;
-  text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 60vw;
-  padding: 20px;
-  background-color: #056785a1;
+  width: 800px;
+  max-width: 80%;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #06627ee0;
+  box-shadow: 0 0 10px 2px;
 }
 
-@media screen and (min-width: 600px) {
-  img {
-    min-width: 60%;
-  }
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.btn {
+  font-size: 20px;
+  --hue: var(--hue-neutral);
+  background-color: #ffffffc9;
+  border: 1px solid hsl(var(--hue), 100%, 40%);
+  border-radius: 5px;
+  padding: 5px 5px;
+  outline: none;
+}
+
+.btn:hover {
+  border: 3px solid #04c4ffd8;
+}
+
+.btn.correct {
+  border: 3px solid var(--hue-correct);
+}
+
+.btn.wrong {
+  border: 3px solid var(--hue-wrong);
+}
+
+.start-btn,
+.next-btn {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
 }
