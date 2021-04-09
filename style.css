@@ -23,6 +23,11 @@ body {
   align-items: center;
 }
 
+#timer-count {
+  margin-bottom: 10px;
+  color: rgb(129, 1, 1);
+}
+
 .quizbox {
   transition: 0.3s;
   width: 800px;

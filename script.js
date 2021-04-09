@@ -1,8 +1,9 @@
 var startButton = document.querySelector("#start-btn");
-var questionCont = document.querySelector("#question-cont")
-var questionEl = document.querySelector("#question")
-var answersEl = document.querySelector("#answer-buttons")
+var questionCont = document.querySelector("#question-cont");
+var questionEl = document.querySelector("#question");
+var answersEl = document.querySelector("#answer-buttons");
 var nextButton = document.querySelector("#next-btn");
+var timerCount = document.querySelector("#timer-count");
 
 let shuffledQuestions, currentQuestionIndex
 
@@ -17,6 +18,10 @@ nextButton.addEventListener("click", () => {
 function startGame() {
     console.log("Started Game");
     startButton.classList.add("hide");
+    timerCount.classList.remove("hide");
+    setTime();
+
+
 
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
@@ -25,6 +30,21 @@ function startGame() {
 
 }
 
+var secondsLeft = 120;
+
+function setTime() {
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+        timerCount.textContent = secondsLeft + " seconds left"
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval)
+            timerCount.classList.add("hide");
+            alert("Times Up!");
+            // ADD LOCAL STORAGE HERE WITH SCORE
+
+        }
+    }, 1000);
+}
 
 
 function setNextQuestion() {
@@ -122,4 +142,4 @@ var questions = [
     },
 
     // Add more qeuestions here, Do we need to add the extra java file for questions to save room?
-]
+];
