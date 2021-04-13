@@ -11,7 +11,8 @@
 <body>
     <h1 class="title">InQUIZition</h1>
     <p> Let's put your knowledge to the test.</p>
-    <div id = "timer-count" class = "hide"> 60 Seconds </div>
+    <div id = "timer-count" class = "hide"> 
+          </div>
     <section class ="quizbox">
         
 
@@ -26,15 +27,28 @@
             </div>
         </div>
 
+        <div id="scorecont" class = "hide">
+            <div id = "scorecard"> Score Results </div>
+        </div>
+
             <div class = "controls">
             <button id="start-btn" class="start-btn btn"> Start Quiz </button>
             <button id="next-btn" class="next-btn btn hide"> Next</button>
         </div>
-        
-       
 
+        <div id = "results" class="hide">
+            <h2 class = "gameover"> Game Over!</h2>
+            <h3> You scored <span id = "scoreBtn" class = "btn"></span></h3>
+            <form>
+                <label for="initialsBox">Enter Your Initials Here:</label><br>
+                <input id="initialsBox" type="text" maxlength="4"><br>
+                <input id="submitBtn" type="submit" class="btn">
+            </form>
+        </div>
         
     </section>
+
+
 <script src="script.js"></script>
 </body>
 </html>

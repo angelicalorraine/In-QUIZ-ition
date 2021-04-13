@@ -110,6 +110,8 @@ function clearStatusClass(element) {
     element.classList.remove("wrong")
 }
 
+
+
 var questions = [
     {
         question: "Do you have common sense?",
