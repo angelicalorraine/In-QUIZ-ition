@@ -28,7 +28,7 @@
         </div>
 
         <div id="scorecont" class = "hide">
-            <div id = "scorecard"> Score Results </div>
+            <div id = "results"> Score Results </div>
         </div>
 
             <div class = "controls">
@@ -36,7 +36,9 @@
             <button id="next-btn" class="next-btn btn hide"> Next</button>
         </div>
 
-        <div id = "results" class="hide">
+        <button id ="leaderBtn" type="button" class="btn"> View High Scores</button>
+
+        <div id = "inputForm" class="hide">
             <h2 class = "gameover"> Game Over!</h2>
             <h3> You scored <span id = "scoreBtn" class = "btn"></span></h3>
             <form>
@@ -44,6 +46,13 @@
                 <input id="initialsBox" type="text" maxlength="4"><br>
                 <input id="submitBtn" type="submit" class="btn">
             </form>
+        </div>
+
+        <div id = "scorecard" class="hide">
+            <div id ="scores"> 
+                <h4> Saved Scores </h4></div>
+                <div id="scoreboard"> </div>
+
         </div>
         
     </section>

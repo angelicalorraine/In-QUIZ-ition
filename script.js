@@ -4,8 +4,21 @@ var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#answer-buttons");
 var nextButton = document.querySelector("#next-btn");
 var timerCount = document.querySelector("#timer-count");
-
+var resultCont = document.querySelector("#results");
+var scoreBtn = document.querySelector("#scoreBtn");
+var answerResult = document.querySelector("#results");
+var inputForm = document.querySelector("#inputForm");
+var scoreCont = document.querySelector("#scorecont");
+var submitBtn = document.querySelector("#submitBtn");
+var initialsBox = document.querySelector("#initialsBox")
+var scoreCard = document.querySelector("#scorecard");
+var scoreBoard = document.querySelector("#scoreboard");
 let shuffledQuestions, currentQuestionIndex
+var score = 0;
+var scoreList = [];
+
+getScore();
+
 
 
 startButton.addEventListener("click", startGame)
@@ -21,8 +34,6 @@ function startGame() {
     timerCount.classList.remove("hide");
     setTime();
 
-
-
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0;
     questionCont.classList.remove("hide");
@@ -33,18 +44,19 @@ function startGame() {
 var secondsLeft = 120;
 
 function setTime() {
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
         timerCount.textContent = secondsLeft + " seconds left"
         if (secondsLeft === 0) {
             clearInterval(timerInterval)
-            timerCount.classList.add("hide");
-            alert("Times Up!");
+            gameOver();
             // ADD LOCAL STORAGE HERE WITH SCORE
 
         }
     }, 1000);
 }
+// ADD FUNCTION TO SUBTRACT 10 SECS IF WRONG ANSWER
+
 
 
 function setNextQuestion() {
@@ -78,10 +90,11 @@ function resetState() {
     }
 }
 
+var correct = "";
 
 function selectAnswer(e) {
     var selectedButton = e.target
-    var correct = selectedButton.dataset.correct
+    correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
     Array.from(answersEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
@@ -89,27 +102,123 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove("hide")
     } else {
-        startButton.innerText = "Restart"
-        startButton.classList.remove("hide")
-    }
+        clearInterval(timerInterval);
+        gameOver();
 
+    }
+    checkResult();
 
 }
+
+
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
+        scoreCont.classList.remove("hide")
         element.classList.add("correct")
     } else {
+        scoreCont.classList.remove("hide")
         element.classList.add("wrong")
+
     }
+
+}
+
+function checkResult() {
+    if (correct) {
+        answerResult.textContent = "You are Correct!"
+    } else {
+        answerResult.textContent = "You are Incorrect!"
+        secondsLeft -= 10;
+    }
+    score = secondsLeft;
+}
+
+function getScore() {
+    var storedScore = JSON.parse(localStorage.getItem("highScore"));
+    if (storedScore !== null) {
+        scoreList = storedScore;
+    }
+}
+
+function saveScore() {
+    localStorage.setItem("highScore", JSON.stringify(scoreList));
+}
+
+
+
+
+function gameOver() {
+    scoreCont.classList.add("hide");
+    questionCont.classList.add("hide");
+    inputForm.classList.remove("hide");
+    timerCount.classList.add("hide");
+    checkResult();
+    scoreBtn.innerHTML = score;
+    setScoreBoard();
+
+
 }
 
 function clearStatusClass(element) {
     element.classList.remove("correct")
     element.classList.remove("wrong")
+    answerResult.textContent = "";
 }
 
+
+function setScoreBoard() {
+    addScoreboard();
+    scoreList.sort((a, b) => {
+        return b.score - a.score;
+    });
+
+    topTen = scoreList.slice(0, 10);
+
+    for (var i = 0; i < topTen.length; i++) {
+        var player = topTen[i].player;
+        var score = topTen[i].score;
+
+        var newDiv = document.createElement("div");
+        scoreBoardDiv.appendChild(newDiv);
+
+        var newLabel = document.createElement("label");
+        newLabel.textContent = player + "-" + score;
+        newDiv.appendChild(newLabel);
+    }
+}
+
+function addScoreboard() {
+    scoreBoardDiv = document.createElement("div");
+    scoreBoardDiv.setAttribute("id", "playerInitials");
+    document.getElementById("scoreboard").appendChild(scoreBoardDiv);
+}
+
+
+submitBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    var playerInitials = initialsBox.value;
+    var newScore = {
+        player: playerInitials,
+        score: score,
+    };
+
+    scoreList.push(newScore);
+    saveScore();
+    setScoreBoard();
+    inputForm.classList.add("hide");
+    scoreCard.classList.remove("hide");
+
+}
+);
+
+leaderBtn.addEventListener("click", function (event) {
+    scoreCard.classList.remove("hide");
+    leaderBtn.classList.add("hide");
+    startButton.classList.add("hide");
+    setScoreBoard();
+});
 
 
 var questions = [
