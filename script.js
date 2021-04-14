@@ -13,6 +13,8 @@ var submitBtn = document.querySelector("#submitBtn");
 var initialsBox = document.querySelector("#initialsBox")
 var scoreCard = document.querySelector("#scorecard");
 var scoreBoard = document.querySelector("#scoreboard");
+var leaderBtn = document.querySelector("#leaderBtn");
+var backBtn = document.querySelector("#backBtn");
 let shuffledQuestions, currentQuestionIndex
 var score = 0;
 var scoreList = [];
@@ -153,6 +155,8 @@ function gameOver() {
     scoreCont.classList.add("hide");
     questionCont.classList.add("hide");
     inputForm.classList.remove("hide");
+    leaderBtn.classList.remove("hide");
+    backBtn.classList.remove("hide");
     timerCount.classList.add("hide");
     checkResult();
     scoreBtn.innerHTML = score;
@@ -220,13 +224,18 @@ leaderBtn.addEventListener("click", function (event) {
     setScoreBoard();
 });
 
+backBtn.addEventListener("click", function (event) {
+    location.reload();
+});
 
 var questions = [
     {
-        question: "Do you have common sense?",
+        question: "What is always coming, but never arrives?",
         answers: [
-            { text: "Yes", correct: false },
-            { text: "Let's find out", correct: false },
+            { text: "Yesterday", correct: false },
+            { text: "Tomorrow", correct: true },
+            { text: "Your Past", correct: false },
+            { text: "Progress", correct: false },
 
 
         ]
@@ -242,15 +251,74 @@ var questions = [
         ]
     },
     {
-        question: "When does February have only 27 days?",
+        question: "What is heavier? 100 pounds of rocks or 100 pounds of feathers?",
         answers: [
-            { text: "D is C's daughter", correct: true },
-            { text: "Both are brothers", correct: false },
-            { text: "C is D's uncle", correct: false },
+            { text: "100 pounds of rocks", correct: false },
+            { text: "100 pounds of feathers", correct: false },
+            { text: "The weigh the same", correct: true },
             { text: "They are not related", correct: false },
 
         ]
     },
 
+    {
+        question: "What can one catch that is not thrown?",
+        answers: [
+            { text: "A Strike", correct: false },
+            { text: "A Shot", correct: false },
+            { text: "A Person", correct: false },
+            { text: "A Cold", correct: true },
+
+
+        ]
+    },
+
+    {
+        question: "If you have a bowl with six apples and you take away four, how many do you have?",
+        answers: [
+            { text: "Four", correct: true },
+            { text: "Two", correct: false },
+            { text: "Six", correct: false },
+            { text: "Three", correct: false },
+
+
+        ]
+    },
+
+    {
+        question: "Some months have 31 days, others have 30 days, but how many have 28 days?",
+        answers: [
+            { text: "3 Months", correct: false },
+            { text: "1 Month", correct: false },
+            { text: "2 Months", correct: false },
+            { text: "12 Months", correct: true },
+
+
+        ]
+    },
+
+    {
+        question: "What is it that lives if it is fed, and dies if you give it a drink??",
+        answers: [
+            { text: "Plants", correct: false },
+            { text: "Gas", correct: false },
+            { text: "Fire", correct: true },
+            { text: "Wind", correct: false },
+
+
+        ]
+    },
+
+    {
+        question: "What can be broken but never held? ",
+        answers: [
+            { text: "A Promise", correct: true },
+            { text: "A Plate", correct: false },
+            { text: "A Secret", correct: false },
+            { text: "Your Code", correct: true },
+
+
+        ]
+    },
     // Add more qeuestions here, Do we need to add the extra java file for questions to save room?
 ];

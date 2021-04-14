@@ -30,7 +30,7 @@ body {
 
 .quizbox {
   transition: 0.3s;
-  width: 800px;
+  width: 700px;
   max-width: 80%;
   border-radius: 5px;
   padding: 10px;
@@ -38,6 +38,9 @@ body {
   box-shadow: 0 0 10px 2px;
 }
 
+#question {
+  color: white;
+}
 .btn-grid {
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -51,7 +54,7 @@ body {
   background-color: #ffffffc9;
   border: 1px solid hsl(var(--hue), 100%, 40%);
   border-radius: 5px;
-  padding: 5px 5px;
+  padding: 10px 5px;
   outline: none;
 }
 
