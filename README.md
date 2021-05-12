@@ -1,14 +1,34 @@
 # In-QUIZ-ition
 
-Build a JavaScript Code Quiz that must contain the following:
+Application Link: https://angelicalorraine.github.io/In-QUIZ-ition/
 
-Instructions on quiz play
-A timer starting when quiz begins
-The ability to loop thru multiple choice questions & answers
-Statement showing if answer chosen was right or wrong
-Time subtracted from incorrect answer selection
-The ability to save player initials
-The ability to view high scores
-Game over presented when all questions answered OR timer runs out
+## Your Task
 
-https://angelicalorraine.github.io/In-QUIZ-ition/
+To build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface.
+
+## User Story
+
+```
+AS A coding boot camp student
+I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
+SO THAT I can gauge my progress compared to my peers
+```
+
+## Acceptance Criteria
+
+```
+GIVEN I am taking a code quiz
+WHEN I click the start button
+THEN a timer starts and I am presented with a question
+WHEN I answer a question
+THEN I am presented with another question
+WHEN I answer a question incorrectly
+THEN time is subtracted from the clock
+WHEN all questions are answered or the timer reaches 0
+THEN the game is over
+WHEN the game is over
+THEN I can save my initials and my score
+```
+
+![in-QUIZ-ition](assets/InQUIZition.png)
+![in-QUIZ-ition-2](assets/InQUIZition2.png)
